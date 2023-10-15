@@ -1,4 +1,8 @@
 import CardProducts from "@/components/cardproduct";
+import CartIcon from "@/components/svg/cart.svg";
+import Image from "next/image";
+import Link from "next/link";
+import ButtonSignin from "@/components/buttonSignin";
 
 export default async function Home() {
   const res = await fetch("https://fakestoreapi.com/products");
@@ -6,7 +10,18 @@ export default async function Home() {
 
   return (
     <div className="w-full grid text-center justify-center">
-      <h1 className="mt-20 mb-20 text-lg font-bold">Product</h1>
+      <div className="w-full flex items-center justify-between">
+        <ButtonSignin />
+        <h1 className="mt-20 mb-20 text-lg font-bold">Product</h1>
+        <Link href={"/cart"}>
+          <Image
+            className="btn bg-white"
+            src={CartIcon}
+            width={100}
+            height={100}
+          />
+        </Link>
+      </div>
       <div className="grid grid-cols-4 gap-16">
         {getData.map((e) => (
           <CardProducts

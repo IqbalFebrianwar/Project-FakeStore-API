@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ButtonAddCart from "@/components/buttonAddcart";
 
 const DetailProducts = async ({ searchParams }) => {
   const res = await fetch(
@@ -7,8 +8,10 @@ const DetailProducts = async ({ searchParams }) => {
   const data = await res.json();
 
   console.log(Math.round(data.rating.rate));
+
+  
   return (
-    <div className="w-full gap-20 flex h-screen justify-center">
+    <div className="w-full gap-20 flex h-screen items-center justify-center">
       <div className="flex justify-between gap-20 my-10">
         <div>
           <Image width={300} height={500} src={data.image} />
@@ -29,6 +32,7 @@ const DetailProducts = async ({ searchParams }) => {
           <p>Description :</p>
           <p className=" max-w-[500px]">{data.description}</p>
           <button className="btn bg-black text-md text-white">Buy now</button>
+          <ButtonAddCart id={data.id} />
         </div>
       </div>
     </div>
